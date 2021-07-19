@@ -9,6 +9,7 @@ admin.site.register(Language)
 
 class BooksInline(admin.TabularInline):
     model = Book
+    fk_name = 'author'
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
@@ -17,7 +18,21 @@ class AuthorAdmin(admin.ModelAdmin):
 
     fields = ['first_name', 'last_name',
               ('date_of_birth', 'date_of_death')]
+
     inlines = [BooksInline]
+
+    tab_overview = [
+        (None, {
+            'fields': (
+                'first_name', 'last_name',
+                'date_of_birth', 'date_of_death',
+            )
+        }),
+        BooksInline,
+    ]
+    tabs = [
+        ('Author', tab_overview),
+    ]
 
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
