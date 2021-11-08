@@ -32,6 +32,9 @@ urlpatterns += [
 urlpatterns += [
     path('', RedirectView.as_view(url='catalog/', permanent=True)),
 ]
-# Habilitar servicio de ficheros estáticos durante el desrrollo
 
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls'))
+]
+# Habilitar servicio de ficheros estáticos durante el desrrollo
 urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
