@@ -57,7 +57,7 @@ class Book(models.Model):
         Devuelve el url a una instancia particular de Book
         usado para ingresar al detalle de un registro
         """
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('book-detail', args=[self.id])
 
 class BookInstance(models.Model):
     """
